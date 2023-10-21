@@ -7,12 +7,43 @@
     height: 100vh;
     justify-content: center;
     align-content: center;
+    grid-template-areas: "number-word number-word number-word";
+}
+
+.number-word {
+    font-size: 6rem;
+    border-radius: 20px;
+    animation-name: moveDown;
+    grid-area: number-word;
+    text-align: center;
+}
+
+@keyframes moveFromMiddle {
+    0% {
+        transform: translateX(-0%) translateY(50vh);
+    }
+    100% {
+        transform: translateX(0) translateY(0);
+    }
+}
+
+.number-word-text {
+    background-color: rgba(0, 0, 0, 0.5);
+    animation-name: moveFromMiddle;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    color: white;
+    border-radius: 20px;
+    animation-timing-function: ease;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
 }
 
 .numbers-grid-item {
     border: 1px solid #ccc;
     padding: 20px;
     text-align: center;
+    height: 12rem;
     font-size: 6rem;
     background-color: #f0f0f0;
     color: #333;
@@ -20,7 +51,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 12rem;
 
     &:hover {
         background-color: #007bff;
