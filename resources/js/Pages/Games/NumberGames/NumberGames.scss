@@ -1,49 +1,57 @@
+/* Default styles for numbers grid container */
 .numbers-grid-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
-    padding: 20px;
     max-width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
     justify-content: center;
     align-content: center;
     grid-template-areas: "number-word number-word number-word";
+    padding: 20px;
+    box-sizing: border-box;
 }
 
+/* Styles for number word and text */
 .number-word {
     font-size: 6rem;
     border-radius: 20px;
-    animation-name: moveDown;
     grid-area: number-word;
     text-align: center;
 }
 
 @keyframes moveFromMiddle {
     0% {
-        transform: translateX(-0%) translateY(50vh);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
     100% {
-        transform: translateX(0) translateY(0);
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        position: relative;
     }
 }
 
 .number-word-text {
-    background-color: rgba(0, 0, 0, 0.5);
     animation-name: moveFromMiddle;
-    animation-duration: 2s;
-    animation-delay: 2s;
-    color: white;
-    border-radius: 20px;
+    animation-duration: 4s;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-    animation-fill-mode: backwards;
+    animation-fill-mode: forwards;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 20px;
+    position: absolute;
 }
 
+/* Styles for grid items */
 .numbers-grid-item {
     border: 1px solid #ccc;
     padding: 20px;
     text-align: center;
-    height: 12rem;
     font-size: 6rem;
     background-color: #f0f0f0;
     color: #333;
@@ -51,9 +59,41 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 12rem;
 
     &:hover {
         background-color: #007bff;
         color: #fff;
+    }
+}
+
+@media (max-height: 653px) {
+    .number-word {
+        font-size: 4rem;
+    }
+
+    .number-word-text {
+        font-size: 3rem;
+    }
+
+    .numbers-grid-item {
+        font-size: 4rem;
+        height: 6rem;
+    }
+}
+
+/* Media query for screen height between 654px and 800px */
+@media (min-height: 654px) and (max-height: 800px) {
+    .number-word {
+        font-size: 5rem;
+    }
+
+    .number-word-text {
+        font-size: 4rem;
+    }
+
+    .numbers-grid-item {
+        font-size: 5rem;
+        height: 8rem;
     }
 }
