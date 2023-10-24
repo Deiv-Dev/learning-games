@@ -26,6 +26,8 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        position: absolute;
+        width: 98%;
     }
     100% {
         top: 0;
@@ -37,14 +39,14 @@
 
 .number-word-text {
     animation-name: moveFromMiddle;
-    animation-duration: 4s;
+    animation-duration: 2s;
+    animation-delay: 2s;
     animation-timing-function: ease;
     animation-iteration-count: 1;
-    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border-radius: 20px;
-    position: absolute;
 }
 
 /* Styles for grid items */
@@ -96,4 +98,18 @@
         font-size: 5rem;
         height: 8rem;
     }
+}
+
+/* Styling for the feedback message container */
+.feedback-message {
+    z-index: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    font-size: 6rem;
+    z-index: 999;
 }
