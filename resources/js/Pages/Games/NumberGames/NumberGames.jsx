@@ -37,6 +37,8 @@ const GridWithNumbers = () => {
     const [gameOver, setGameOver] = useState(false);
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
 
     const generateUniqueRandomNumbers = () => {
         const randomNumbers = [currentWordIndex + 1];
@@ -75,6 +77,7 @@ const GridWithNumbers = () => {
                     (currentWordIndex + 1) % numbersInWords.length;
                 if (nextIndex === 0) {
                     setGameOver(true);
+                    setEndTime(Date.now());
                 }
                 setCurrentWordIndex(nextIndex);
                 generateUniqueRandomNumbers();
@@ -94,6 +97,14 @@ const GridWithNumbers = () => {
         setCorrectCount(0);
         setWrongCount(0);
         generateUniqueRandomNumbers();
+        setStartTime(Date.now());
+        setEndTime(null);
+    };
+
+    const formatElapsedTime = (milliseconds) => {
+        const minutes = Math.floor(milliseconds / (1000 * 60));
+        const seconds = Math.floor((milliseconds / 1000) % 60);
+        return `${minutes} min ${seconds} sec`;
     };
 
     useEffect(() => {
@@ -136,6 +147,7 @@ const GridWithNumbers = () => {
                     <div className="counters">
                         <p>Teisingi paspaudimai: {correctCount}</p>
                         <p>Neteisingi paspaudimai: {wrongCount}</p>
+                        <p>Trukmė: {formatElapsedTime(endTime - startTime)}</p>
                     </div>
                 </div>
             )}

@@ -110,7 +110,7 @@
     background-color: rgba(170, 170, 170, 0.7);
     backdrop-filter: blur(10px);
 
-    .center-button button {
+    button {
         padding: 20px;
         background-color: green;
         border-radius: 40px;
@@ -119,13 +119,13 @@
         cursor: pointer;
     }
 
-    .center-button .counters {
+    .counters {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin: 20px;
 
-        .center-button .counters p {
+        p {
             font-size: 2rem;
             margin: 5px;
             color: rgb(29, 29, 29);
