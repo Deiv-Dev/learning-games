@@ -4,6 +4,8 @@ import wrong from "./images/X_mark.svg";
 import correct from "./images/icons8-done-480.png";
 
 const GridWithNumbers = () => {
+    const numbersOnCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     const numbersInWords = [
         "Vienas",
         "Du",
@@ -17,7 +19,6 @@ const GridWithNumbers = () => {
         "Dešimt",
     ];
 
-    const numbersOnCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const colors = [
         "#FF5733",
         "#FFC300",
@@ -38,7 +39,7 @@ const GridWithNumbers = () => {
     const [wrongCount, setWrongCount] = useState(0);
 
     const generateUniqueRandomNumbers = () => {
-        const randomNumbers = [currentWordIndex + 1]; // Initialize with the correct number
+        const randomNumbers = [currentWordIndex + 1];
 
         while (randomNumbers.length < 9) {
             const randomIndex = Math.floor(
@@ -50,7 +51,6 @@ const GridWithNumbers = () => {
             }
         }
 
-        // Shuffle the randomNumbers array
         for (let i = randomNumbers.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [randomNumbers[i], randomNumbers[j]] = [
@@ -63,43 +63,41 @@ const GridWithNumbers = () => {
     };
 
     const handleCardClick = (clickedNumber) => {
-        if (gameOver) return; // Don't handle clicks if the game is over
+        if (gameOver) return;
 
         const correctNumber = numbersOnCards[currentWordIndex];
         if (clickedNumber === correctNumber) {
             setIsCorrect(true);
-            setCorrectCount((count) => count + 1); // Increase the correct count
+            setCorrectCount((count) => count + 1);
             setTimeout(() => {
                 setIsCorrect(null);
                 const nextIndex =
                     (currentWordIndex + 1) % numbersInWords.length;
                 if (nextIndex === 0) {
-                    // Game over, all words have been played
                     setGameOver(true);
                 }
                 setCurrentWordIndex(nextIndex);
                 generateUniqueRandomNumbers();
-            }, 500); // Adjust the time as needed
+            }, 500);
         } else {
             setIsCorrect(false);
-            setWrongCount((count) => count + 1); // Increase the wrong count
+            setWrongCount((count) => count + 1);
             setTimeout(() => {
                 setIsCorrect(null);
-            }, 500); // Adjust the time as needed
+            }, 500);
         }
     };
 
     const handlePlayAgain = () => {
         setCurrentWordIndex(0);
         setGameOver(false);
-        setCorrectCount(0); // Reset the correct count
-        setWrongCount(0); // Reset the wrong count
+        setCorrectCount(0);
+        setWrongCount(0);
         generateUniqueRandomNumbers();
     };
 
     useEffect(() => {
         generateUniqueRandomNumbers();
-        setIsCorrect(null);
     }, [currentWordIndex]);
 
     return (
