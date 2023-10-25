@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./NumberGames.scss";
+import wrong from "./images/X_mark.svg";
+import correct from "./images/icons8-done-480.png";
 
 const GridWithNumbers = () => {
     const numbersInWords = [
-        "vienas",
-        "du",
-        "trys",
-        "keturi",
-        "penki",
-        "šeši",
-        "septyni",
-        "aštuoni",
-        "devyni",
-        "dešimt",
+        "Vienas",
+        "Du",
+        "Trys",
+        "Keturi",
+        "Penki",
+        "Šeši",
+        "Septyni",
+        "Aštuoni",
+        "Devyni",
+        "Dešimt",
     ];
 
     const numbersOnCards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -31,6 +33,9 @@ const GridWithNumbers = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [selectedNumbers, setSelectedNumbers] = useState([]);
     const [isCorrect, setIsCorrect] = useState(null);
+    const [gameOver, setGameOver] = useState(false);
+    const [correctCount, setCorrectCount] = useState(0);
+    const [wrongCount, setWrongCount] = useState(0);
 
     const generateUniqueRandomNumbers = () => {
         const randomNumbers = [currentWordIndex + 1]; // Initialize with the correct number
@@ -58,22 +63,38 @@ const GridWithNumbers = () => {
     };
 
     const handleCardClick = (clickedNumber) => {
+        if (gameOver) return; // Don't handle clicks if the game is over
+
         const correctNumber = numbersOnCards[currentWordIndex];
         if (clickedNumber === correctNumber) {
             setIsCorrect(true);
+            setCorrectCount((count) => count + 1); // Increase the correct count
             setTimeout(() => {
                 setIsCorrect(null);
-                setCurrentWordIndex(
-                    (prevIndex) => (prevIndex + 1) % numbersInWords.length
-                );
+                const nextIndex =
+                    (currentWordIndex + 1) % numbersInWords.length;
+                if (nextIndex === 0) {
+                    // Game over, all words have been played
+                    setGameOver(true);
+                }
+                setCurrentWordIndex(nextIndex);
                 generateUniqueRandomNumbers();
-            }, 1500); // Adjust the time as needed
+            }, 500); // Adjust the time as needed
         } else {
             setIsCorrect(false);
+            setWrongCount((count) => count + 1); // Increase the wrong count
             setTimeout(() => {
                 setIsCorrect(null);
-            }, 1500); // Adjust the time as needed
+            }, 500); // Adjust the time as needed
         }
+    };
+
+    const handlePlayAgain = () => {
+        setCurrentWordIndex(0);
+        setGameOver(false);
+        setCorrectCount(0); // Reset the correct count
+        setWrongCount(0); // Reset the wrong count
+        generateUniqueRandomNumbers();
     };
 
     useEffect(() => {
@@ -100,10 +121,26 @@ const GridWithNumbers = () => {
                     </div>
                 ))}
             </div>
+
             <div className="feedback-message">
-                {isCorrect === true && <p>Correct!</p>}
-                {isCorrect === false && <p>Wrong! Try again.</p>}
+                {isCorrect === true && <img src={correct} alt="correct" />}
+                {isCorrect === false && (
+                    <img className="wrong-svg" src={wrong} alt="wrong" />
+                )}
             </div>
+            {gameOver && (
+                <div className="center-button">
+                    <div>
+                        <button onClick={handlePlayAgain}>
+                            Žaisti dar kartą
+                        </button>
+                    </div>
+                    <div className="counters">
+                        <p>Teisingi paspaudimai: {correctCount}</p>
+                        <p>Neteisingi paspaudimai: {wrongCount}</p>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

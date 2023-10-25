@@ -107,9 +107,68 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: #fff;
-    border: 1px solid #000;
-    border-radius: 5px;
+    animation: shake 0.5s ease-in-out infinite;
+}
+
+.wrong-svg {
+    width: 300px;
+}
+
+.center-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(
+        170,
+        170,
+        170,
+        0.7
+    ); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Adjust the blur amount as needed */
+}
+
+.center-button button {
+    padding: 20px;
+    background-color: green;
+    border-radius: 40px;
+    color: white;
     font-size: 6rem;
-    z-index: 999;
+    cursor: pointer;
+}
+
+.center-button .counters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.center-button .counters p {
+    font-size: 2rem;
+    margin: 5px;
+    color: rgb(29, 29, 29);
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(-55%, -50%);
+    }
+    25% {
+        transform: translate(-45%, -50%);
+    }
+    50% {
+        transform: translate(-55%, -50%);
+    }
+    75% {
+        transform: translate(-45%, -50%);
+    }
+    100% {
+        transform: translate(-55%, -50%);
+    }
 }
