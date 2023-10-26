@@ -1,0 +1,35 @@
+.center-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(170, 170, 170, 0.7);
+    backdrop-filter: blur(10px);
+
+    button {
+        padding: 20px;
+        background-color: green;
+        border-radius: 40px;
+        color: white;
+        font-size: 6rem;
+        cursor: pointer;
+    }
+
+    .counters {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+
+        p {
+            font-size: 2rem;
+            margin: 5px;
+            color: rgb(29, 29, 29);
+        }
+    }
+}
