@@ -1,12 +1,12 @@
 import React from "react";
 import "./Cards.Component.scss";
-import { colors } from "@/Helpers/gamesData";
 
 const CardsComponent = ({
     handleCardClick,
     numbersInWords,
     selectedNumbers,
     currentWordIndex,
+    colors,
 }) => {
     return (
         <div className="numbers-grid-container">

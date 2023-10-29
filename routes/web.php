@@ -29,9 +29,9 @@ Route::get('/test', function () {
     return Inertia::render('Test');
 })->name('test');
 
-Route::get('/number-games', function () {
-    return Inertia::render('Games/NumberGames/NumberGames');
-})->name('number-games');
+Route::get('/numbers-game', function () {
+    return Inertia::render('Games/NumbersGames/NumbersGame');
+})->name('numbers-game');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
