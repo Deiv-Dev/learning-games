@@ -84,6 +84,7 @@ const NumbersGame = () => {
                 selectedNumbers={selectedNumbers}
                 currentWordIndex={currentWordIndex}
                 colors={colors}
+                style={1}
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (

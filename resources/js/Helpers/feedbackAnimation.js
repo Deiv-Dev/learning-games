@@ -1,4 +1,4 @@
-let isCorrect = null;
+export let isCorrect = null;
 
 export const isCorrectAnimation = (condition) => {
     isCorrect = condition;

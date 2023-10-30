@@ -33,6 +33,10 @@ Route::get('/numbers-game', function () {
     return Inertia::render('Games/NumbersGames/NumbersGame');
 })->name('numbers-game');
 
+Route::get('/colors-game', function () {
+    return Inertia::render('Games/ColorsGames/ColorsGame');
+})->name('colors-game');
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

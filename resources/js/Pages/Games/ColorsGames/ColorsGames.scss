@@ -1,0 +1,11 @@
+.colors-numbers-grid-item {
+    border: 1px solid black;
+
+    &:hover {
+        border: 4px solid black;
+    }
+
+    .card-text {
+        display: none;
+    }
+}

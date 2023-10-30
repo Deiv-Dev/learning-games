@@ -7,7 +7,13 @@ const CardsComponent = ({
     selectedNumbers,
     currentWordIndex,
     colors,
+    style,
 }) => {
+    const className =
+        style === 1
+            ? "numbers-grid-item"
+            : "numbers-grid-item colors-numbers-grid-item";
+
     return (
         <div className="numbers-grid-container">
             <div className="number-word">
@@ -18,11 +24,11 @@ const CardsComponent = ({
             {selectedNumbers.map((number, index) => (
                 <div
                     key={number}
-                    className="numbers-grid-item"
+                    className={className}
                     style={{ backgroundColor: colors[index] }}
                     onClick={() => handleCardClick(number)}
                 >
-                    {number}
+                    <p className="card-text">{number}</p>
                 </div>
             ))}
         </div>
