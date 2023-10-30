@@ -34,11 +34,11 @@ const NumbersGame = () => {
         setSelectedNumbers(shuffleArray(randomNumbers));
     };
 
-    const handleCardClick = (clickedNumber) => {
+    const handleCardClick = (clickedCard) => {
         if (gameOver) return;
 
         const correctNumber = numbersOnCards[currentWordIndex];
-        if (clickedNumber === correctNumber) {
+        if (clickedCard === correctNumber) {
             setIsCorrect(true);
             countCorrectPress();
             setTimeout(() => {
@@ -80,11 +80,11 @@ const NumbersGame = () => {
         <>
             <CardsComponent
                 handleCardClick={handleCardClick}
-                numbersInWords={numbersInWords}
-                selectedNumbers={selectedNumbers}
+                wordsToFind={numbersInWords}
+                cards={selectedNumbers}
                 currentWordIndex={currentWordIndex}
                 colors={colors}
-                style={1}
+                style={"numbers-game"}
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
