@@ -30,9 +30,9 @@ Route::get('/', function () {
 Route::get('/index', [GameScoresController::class, 'index'])->name('index.index');
 Route::post('/game_scores', 'App\Http\Controllers\GameScoresController@store')->withoutMiddleware('web');
 
-Route::get('/test', function () {
-    return Inertia::render('Test');
-})->name('test');
+Route::get('/games-scores', function () {
+    return Inertia::render('Games/ScoreDashboard/ScoreDashboard');
+})->name('games-scores');
 
 Route::get('/numbers-game', function () {
     return Inertia::render('Games/NumbersGames/NumbersGame');
