@@ -70,6 +70,7 @@ const ColorsGame = () => {
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
+                    gameName={"ColorsGame"}
                 />
             )}
         </>

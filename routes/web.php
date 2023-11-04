@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GameScoresController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+
+Route::get('/index', [GameScoresController::class, 'index'])->name('index.index');
+Route::post('/game_scores', 'App\Http\Controllers\GameScoresController@store')->withoutMiddleware('web');
 
 Route::get('/test', function () {
     return Inertia::render('Test');
