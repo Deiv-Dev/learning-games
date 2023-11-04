@@ -14,6 +14,17 @@ class GameScoresController extends Controller
         return response()->json($gameScore, 201);
     }
 
+    public function getScoreByName($name)
+    {
+        $gameScore = GameScore::where('game_name', $name)->get();
+
+        if (!$gameScore) {
+            return response()->json(['message' => 'No data found'], 404);
+        }
+
+        return response()->json($gameScore, 200);
+    }
+
     public function create()
     {
         // Show a form to create a new game score record
