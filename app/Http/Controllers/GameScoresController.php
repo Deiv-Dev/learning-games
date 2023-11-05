@@ -4,72 +4,75 @@ namespace App\Http\Controllers;
 
 use App\Models\GameScore;
 
+use Cache;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class GameScoresController extends Controller
 {
-    public function index()
+    const CACHE_TIME_SECONDS = 300; // 5min
+    const CACHE_ALL_GAME_SCORES = "all-game-scores";
+
+    public function index(): JsonResponse
     {
-        $gameScore = GameScore::all();
-        return response()->json($gameScore, 201);
+        if (Cache::has(self::CACHE_ALL_GAME_SCORES)) {
+            return response()->json(Cache::get(self::CACHE_ALL_GAME_SCORES));
+        }
+        try {
+            $gameScore = GameScore::all();
+            if ($gameScore->isEmpty()) {
+                return response()->json(['message' => 'Data is empty'], 404);
+            }
+            Cache::put(self::CACHE_ALL_GAME_SCORES, $gameScore, self::CACHE_TIME_SECONDS);
+            return response()->json($gameScore, 201);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to fetch game scores.'], 500);
+        }
     }
 
-    public function getScoreByName($name)
+    public function getScoreByName($name): JsonResponse
     {
-        $gameScore = GameScore::where('game_name', $name)->get();
-
-        if (!$gameScore) {
+        if (Cache::has($name)) {
+            return response()->json(Cache::get($name));
+        }
+        try {
+            $gameScore = GameScore::where('game_name', $name)->get();
+            if ($gameScore->isEmpty()) {
+                return response()->json(['message' => 'Data is empty'], 404);
+            }
+            Cache::put($name, $gameScore, self::CACHE_TIME_SECONDS);
+            return response()->json($gameScore, 200);
+        } catch (QueryException $e) {
+            return response()->json(['error' => 'Database error'], 500);
+        } catch (ModelNotFoundException $e) {
             return response()->json(['message' => 'No data found'], 404);
         }
-
-        return response()->json($gameScore, 200);
     }
 
-    public function create()
-    {
-        // Show a form to create a new game score record
-    }
-
-    public function store(Request $request)
+    public function store(Request $request): JsonResponse
     {
         try {
-            $validatedData = $request->validate([
+            $data = $request->validate([
                 'game_name' => 'required|string|max:255',
                 'score' => 'required|integer',
                 'game_duration_milliseconds' => 'required|integer',
             ]);
 
-            GameScore::create($validatedData);
+            GameScore::create($data);
 
             return response()->json([
                 'status' => 'success',
                 'message' => 'Game score added successfully'
             ], 201);
         } catch (ValidationException $e) {
-            // Handle validation errors here
             return response()->json([
                 'status' => 'error',
                 'message' => 'Validation failed',
                 'errors' => $e->errors(),
-                // Get validation errors
-            ], 422); // Use an appropriate HTTP status code for validation failure
+            ], 422);
         }
-    }
-
-    public function edit($id)
-    {
-        // Show a form to edit an existing game score record
-        // Retrieve the record by $id
-    }
-
-    public function update(Request $request, $id)
-    {
-        // Update an existing game score record in the database
-        // Validate input, update data, and redirect
-    }
-
-    public function destroy($id)
-    {
-        // Delete a game score record by $id
     }
 }
