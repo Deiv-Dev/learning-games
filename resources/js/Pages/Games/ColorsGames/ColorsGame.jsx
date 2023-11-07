@@ -17,13 +17,36 @@ const ColorsGame = () => {
     const [isCorrect, setIsCorrect] = useState(null);
     const [gameOver, setGameOver] = useState(false);
     const [shuffledColors, setShuffledColors] = useState([]);
+    const [colorsToCompareWithWords, setColorsToCompareWithWords] = useState(
+        []
+    );
+    const [shuffledColorsInWords, setShuffledColorsInWords] = useState([]);
+
+    useEffect(() => {
+        const colorWordPairs = colors.map((color, index) => ({
+            color,
+            word: colorsInWords[index],
+        }));
+        const shuffledPairs = shuffleArray(colorWordPairs);
+
+        const slicedColors = shuffledPairs
+            .slice(0, 9)
+            .map((pair) => pair.color);
+        const slicedWords = shuffledPairs.slice(0, 9).map((pair) => pair.word);
+
+        setShuffledColors(slicedColors);
+        setColorsToCompareWithWords(slicedColors);
+        setShuffledColorsInWords(slicedWords);
+
+        startTimer();
+    }, []);
 
     const handleCardClick = (clickedCard) => {
         if (gameOver) return;
 
-        const currentColor = colors[currentWordIndex];
+        const currentColor = colorsToCompareWithWords[currentWordIndex];
         if (clickedCard === currentColor) {
-            setShuffledColors(shuffleArray(colors.slice(0, 9)));
+            setShuffledColors(shuffleArray(shuffledColors));
             setIsCorrect(true);
             countCorrectPress();
             setTimeout(() => {
@@ -50,16 +73,11 @@ const ColorsGame = () => {
         startTimer();
     };
 
-    useEffect(() => {
-        setShuffledColors(shuffleArray(colors.slice(0, 9)));
-        startTimer();
-    }, []);
-
     return (
         <>
             <CardsComponent
                 handleCardClick={handleCardClick}
-                wordsToFind={colorsInWords}
+                wordsToFind={shuffledColorsInWords}
                 cards={shuffledColors}
                 currentWordIndex={currentWordIndex}
                 colors={shuffledColors}

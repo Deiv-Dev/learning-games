@@ -35,6 +35,7 @@ const NumbersGame = () => {
     };
 
     const handleCardClick = (clickedCard) => {
+        console.log(clickedCard);
         if (gameOver) return;
 
         const correctNumber = numbersOnCards[currentWordIndex];
