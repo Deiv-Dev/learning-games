@@ -41,6 +41,10 @@ Route::get('/numbers-game', function () {
     return Inertia::render('Games/NumbersGames/NumbersGame');
 })->name('numbers-game');
 
+Route::get('/letters-game', function () {
+    return Inertia::render('Games/LettersGames/LettersGame');
+})->name('letters-game');
+
 Route::get('/colors-game', function () {
     return Inertia::render('Games/ColorsGames/ColorsGame');
 })->name('colors-game');

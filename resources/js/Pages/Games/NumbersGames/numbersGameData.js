@@ -12,15 +12,3 @@ export const numbersInWords = [
     "Devyni",
     "Dešimt",
 ];
-
-export const colors = [
-    "#FF5733",
-    "#FFC300",
-    "#C70039",
-    "#900C3F",
-    "#00A8CC",
-    "#00CC00",
-    "#FF5733",
-    "#FFC300",
-    "#C70039",
-];

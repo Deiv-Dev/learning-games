@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./ColorsGames.scss";
-import { shuffleArray } from "../../../Helpers/shuffleArray";
-import { colors, colorsInWords } from "./ColorsGameData";
+import {
+    shuffleArray,
+    shuffleTwoArraysParallel,
+} from "../../../Helpers/shuffleArray";
+import { colorsOnCards, colorsInWords } from "./ColorsGameData";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
@@ -23,20 +26,13 @@ const ColorsGame = () => {
     const [shuffledColorsInWords, setShuffledColorsInWords] = useState([]);
 
     useEffect(() => {
-        const colorWordPairs = colors.map((color, index) => ({
-            color,
-            word: colorsInWords[index],
-        }));
-        const shuffledPairs = shuffleArray(colorWordPairs);
-
-        const slicedColors = shuffledPairs
-            .slice(0, 9)
-            .map((pair) => pair.color);
-        const slicedWords = shuffledPairs.slice(0, 9).map((pair) => pair.word);
-
-        setShuffledColors(slicedColors);
-        setColorsToCompareWithWords(slicedColors);
-        setShuffledColorsInWords(slicedWords);
+        const { slicedColors, slicedWords } = shuffleTwoArraysParallel(
+            colorsOnCards,
+            colorsInWords
+        );
+        setShuffledColors(slicedColors.slice(0, 9));
+        setColorsToCompareWithWords(slicedColors.slice(0, 9));
+        setShuffledColorsInWords(slicedWords.slice(0, 9));
 
         startTimer();
     }, []);

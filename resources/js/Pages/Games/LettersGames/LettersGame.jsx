@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from "react";
-import "./NumbersGame.scss";
-import { shuffleArray } from "../../../Helpers/shuffleArray";
-import { numbersOnCards, numbersInWords } from "./numbersGameData";
+import React, { useEffect, useState } from "react";
+import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
-import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
-import { startTimer, endTimer } from "../../../Helpers/countTime";
-import {
-    countCorrectPress,
-    countWrongPress,
-    resetScoreCount,
-} from "@/Helpers/scoreCount";
+import { handleCardClick } from "@/Helpers/clickedCards";
+import { shuffleArray } from "@/Helpers/shuffleArray";
+import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCount";
+import { alphabet } from "./lettersGameData";
 import { getRandomLightColor } from "@/Helpers/generateLightRandomColors";
+import { startTimer, endTimer } from "@/Helpers/countTime";
 import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArray";
 
-const NumbersGame = () => {
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [selectedNumbers, setSelectedNumbers] = useState([]);
+const LettersGame = () => {
+    const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
+    const [selectedLetters, setSelectedLetters] = useState([]);
     const [isCorrect, setIsCorrect] = useState(null);
     const [gameOver, setGameOver] = useState(false);
 
@@ -25,36 +21,35 @@ const NumbersGame = () => {
     }, []);
 
     useEffect(() => {
-        setSelectedNumbers(
+        setSelectedLetters(
             shuffleArray(
                 generatingArrayWithRandomValuesAndCorrectValues(
-                    numbersOnCards,
-                    currentWordIndex
+                    alphabet,
+                    currentLetterIndex
                 )
             )
         );
-    }, [currentWordIndex]);
+    }, [currentLetterIndex]);
 
     const handleCardClick = (clickedCard) => {
         if (gameOver) return;
 
-        const correctNumber = numbersOnCards[currentWordIndex];
-        if (clickedCard === correctNumber) {
+        const correctLetter = alphabet[currentLetterIndex];
+        if (clickedCard === correctLetter) {
             setIsCorrect(true);
             countCorrectPress();
             setTimeout(() => {
                 setIsCorrect(null);
-                const nextIndex =
-                    (currentWordIndex + 1) % numbersInWords.length;
+                const nextIndex = (currentLetterIndex + 1) % alphabet.length;
                 if (nextIndex === 0) {
                     setGameOver(true);
                 }
-                setCurrentWordIndex(nextIndex);
-                setSelectedNumbers(
+                setCurrentLetterIndex(nextIndex);
+                setSelectedLetters(
                     shuffleArray(
                         generatingArrayWithRandomValuesAndCorrectValues(
-                            numbersOnCards,
-                            currentWordIndex
+                            alphabet,
+                            currentLetterIndex
                         )
                     )
                 );
@@ -87,22 +82,22 @@ const NumbersGame = () => {
         <>
             <CardsComponent
                 handleCardClick={handleCardClick}
-                wordsToFind={numbersInWords}
-                cards={selectedNumbers}
-                currentWordIndex={currentWordIndex}
+                wordsToFind={alphabet}
+                cards={selectedLetters}
+                currentWordIndex={currentLetterIndex}
                 colors={Array.from({ length: 9 }, () => getRandomLightColor())}
-                style={"numbers-game"}
+                style={"colors-game"}
             />
-            <FeedbackMessageComponent isCorrect={isCorrect} />
+            <FeedbackMessageComponent isCorrect={isCorrect} />#
             {gameOver && (
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
-                    gameName={"numbers-game"}
+                    gameName={"letters-game"}
                 />
             )}
         </>
     );
 };
 
-export default NumbersGame;
+export default LettersGame;

@@ -1,4 +1,4 @@
-export const colors = [
+export const colorsOnCards = [
     "#FF0000",
     "#FFA500",
     "#FFFF00",
