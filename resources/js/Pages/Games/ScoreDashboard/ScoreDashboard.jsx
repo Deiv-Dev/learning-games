@@ -9,7 +9,7 @@ const ScoreDashboard = ({ name }) => {
     const [createdAt, setCreatedAt] = useState([]);
 
     useEffect(() => {
-        Axios.get(`/find-games-score/${name}`)
+        Axios.get(`/api/find-games-score/${name}`)
             .then((response) => {
                 const timeStampsArray = response.data.map(
                     (scoreData) => scoreData.created_at

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./NumbersGame.scss";
-import { shuffleArray } from "../../../Helpers/shuffleArray";
-import { numbersOnCards, numbersInWords } from "./numbersGameData";
+import "./FindNumbersGame.scss";
+import { shuffleArray } from "../../../../Helpers/shuffleArray";
+import { numbersOnCards, numbersInWords } from "./FindNumbersGameData";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
-import { startTimer, endTimer } from "../../../Helpers/countTime";
+import { startTimer, endTimer } from "../../../../Helpers/countTime";
 import {
     countCorrectPress,
     countWrongPress,

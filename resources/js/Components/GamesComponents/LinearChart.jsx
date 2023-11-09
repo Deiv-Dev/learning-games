@@ -21,7 +21,6 @@ Chart.register(
     LineElement
 );
 const LinearChart = ({ score, time, createdAt }) => {
-    console.log(createdAt);
     const data = {
         labels: createdAt,
         datasets: [

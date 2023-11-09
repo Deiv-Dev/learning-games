@@ -6,7 +6,7 @@ export const submitGameScore = async (gameName, endTimer, score) => {
     };
 
     try {
-        const response = await fetch("/game_scores", {
+        const response = await fetch("/api/game_scores", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -26,20 +26,13 @@ Route::get('/', function () {
     ]);
 });
 
-
-Route::get('/index', [GameScoresController::class, 'index'])->name('index.index');
-Route::post('/game_scores', 'App\Http\Controllers\GameScoresController@store')->withoutMiddleware('web');
-
 Route::get('/game-score/{name}', function ($name) {
     return Inertia::render('Games/ScoreDashboard/ScoreDashboard', ['name' => $name]);
 })->name('games-scores');
 
-
-Route::get('/find-games-score/{name}', [GameScoresController::class, 'getScoreByName'])->name('find-games-score.index');
-
-Route::get('/numbers-game', function () {
-    return Inertia::render('Games/NumbersGames/NumbersGame');
-})->name('numbers-game');
+Route::get('/find-numbers-game', function () {
+    return Inertia::render('Games/NumbersGames/FindNumbersGame/FindNumbersGame');
+})->name('find-numbers-game');
 
 Route::get('/letters-game', function () {
     return Inertia::render('Games/LettersGames/LettersGame');
