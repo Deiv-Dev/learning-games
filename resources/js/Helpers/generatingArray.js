@@ -1,12 +1,12 @@
 export const generatingArrayWithRandomValuesAndCorrectValues = (
-    arrayCorect,
-    curentIndexToTake
+    arrayCorrect,
+    currentIndexToTake
 ) => {
-    const randomValues = [arrayCorect[curentIndexToTake]];
+    const randomValues = [arrayCorrect[currentIndexToTake]];
 
     while (randomValues.length < 9) {
-        const randomIndex = Math.floor(Math.random() * arrayCorect.length);
-        const randomValue = arrayCorect[randomIndex];
+        const randomIndex = Math.floor(Math.random() * arrayCorrect.length);
+        const randomValue = arrayCorrect[randomIndex];
 
         if (!randomValues.includes(randomValue)) {
             randomValues.push(randomValue);

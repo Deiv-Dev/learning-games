@@ -34,6 +34,14 @@ Route::get('/find-numbers-game', function () {
     return Inertia::render('Games/NumbersGames/FindNumbersGame/FindNumbersGame');
 })->name('find-numbers-game');
 
+Route::get('/add-numbers-game', function () {
+    return Inertia::render('Games/NumbersGames/AddNumberGame/AddNumberGame');
+})->name('add-numbers-game');
+
+Route::get('/numbers-game', function () {
+    return Inertia::render('Games/NumbersGames/NumbersGames');
+})->name('numbers-game');
+
 Route::get('/letters-game', function () {
     return Inertia::render('Games/LettersGames/LettersGame');
 })->name('letters-game');
