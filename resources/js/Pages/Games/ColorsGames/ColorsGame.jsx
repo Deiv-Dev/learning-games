@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./ColorsGames.scss";
 import {
     shuffleArray,
     shuffleTwoArraysParallel,

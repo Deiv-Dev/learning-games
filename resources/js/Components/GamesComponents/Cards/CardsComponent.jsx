@@ -9,25 +9,25 @@ const CardsComponent = ({
     colors,
     style,
 }) => {
-    const className =
-        style === "numbers-game"
-            ? "numbers-grid-item"
-            : "numbers-grid-item colors-numbers-grid-item";
+    const cardClassName =
+        style === "cards-with-text"
+            ? "cards__component__card"
+            : "cards__component__card cards__component__card--colors";
     return (
-        <div className="numbers-grid-container">
-            <div className="number-word">
-                <p className="number-word-text">
+        <div className="cards__component">
+            <div className="cards__component__header">
+                <p className="cards__component__title">
                     {wordsToFind[currentWordIndex]}
                 </p>
             </div>
             {cards.map((card, index) => (
                 <div
                     key={index}
-                    className={className}
+                    className={cardClassName}
                     style={{ backgroundColor: colors[index] }}
                     onClick={() => handleCardClick(card)}
                 >
-                    <p className="card-text">{card}</p>
+                    <p className="cards__component__card__text">{card}</p>
                 </div>
             ))}
         </div>
