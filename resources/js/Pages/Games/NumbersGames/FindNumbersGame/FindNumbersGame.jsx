@@ -98,7 +98,7 @@ const NumbersGame = () => {
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
-                    gameName={"numbers-game"}
+                    gameName={"find-numbers-game"}
                 />
             )}
         </>

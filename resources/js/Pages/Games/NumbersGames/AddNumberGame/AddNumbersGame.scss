@@ -1,0 +1,55 @@
+.add-numbers-grid-container {
+    display: grid;
+    grid-template-rows: auto; /* Three rows: first add-numbers-game, second add-numbers-game, third button */
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 5px;
+    max-width: 100%;
+    min-height: 100vh;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    margin: 0 20%;
+    box-sizing: border-box;
+
+    .add-numbers-game {
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: 50vh;
+        font-size: 6rem;
+    }
+
+    form input[type="number"] {
+        border-radius: 20px;
+        font-size: 6rem;
+        background-color: transparent;
+        width: 100%;
+        text-align: center;
+    }
+
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    button {
+        border-radius: 20px;
+        background-color: rgb(109, 109, 255);
+        font-size: 3rem;
+        grid-row: 3; /* Place the button in the third row */
+        grid-column: span 2;
+
+        &:hover {
+            color: white;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    .add-numbers-grid-container {
+        margin: 0 5%;
+    }
+}
