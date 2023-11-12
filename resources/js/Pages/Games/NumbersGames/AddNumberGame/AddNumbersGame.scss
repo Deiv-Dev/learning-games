@@ -1,6 +1,6 @@
 .add-numbers-grid-container {
     display: grid;
-    grid-template-rows: auto; /* Three rows: first add-numbers-game, second add-numbers-game, third button */
+    grid-template-rows: auto;
     grid-template-columns: 2fr 1fr;
     grid-gap: 5px;
     max-width: 100%;

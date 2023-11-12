@@ -11,14 +11,23 @@ const GameOverComponent = ({ handlePlayAgain, endTimer, gameName }) => {
     }, []);
 
     return (
-        <div className="center-button">
+        <div className="game__over">
             <form>
                 <div>
-                    <button onClick={handlePlayAgain}>Žaisti dar kartą</button>
+                    <button
+                        className="game__over__play__again"
+                        onClick={handlePlayAgain}
+                    >
+                        Žaisti dar kartą
+                    </button>
                 </div>
-                <div className="counters">
-                    <p>Taskai: {score()}</p>
-                    <p>Trukmė: {formatElapsedTime(endTimer())}</p>
+                <div className="game__over__counters">
+                    <p className="game__over__counters__text">
+                        Taskai: {score()}
+                    </p>
+                    <p className="game__over__counters__text">
+                        Trukmė: {formatElapsedTime(endTimer())}
+                    </p>
                     <Link href={route("games-scores", { name: gameName })}>
                         <button>Tasku ziuer</button>
                     </Link>

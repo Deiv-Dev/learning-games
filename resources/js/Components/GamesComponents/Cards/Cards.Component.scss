@@ -64,16 +64,16 @@
             color: #fff;
         }
 
-        &--colors {
+        &--text {
             border: 1px solid black;
 
             &:hover {
                 border: 4px solid black;
             }
-        }
 
-        &__text {
-            display: none;
+            p {
+                display: none;
+            }
         }
     }
 }

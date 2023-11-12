@@ -5,10 +5,14 @@ import correct from "../../../Images/correct.png";
 
 const FeedbackMessageComponent = ({ isCorrect }) => {
     return (
-        <div className="feedback-message">
+        <div className="feedback__message">
             {isCorrect === true && <img src={correct} alt="correct" />}
             {isCorrect === false && (
-                <img className="wrong-svg" src={wrong} alt="wrong" />
+                <img
+                    className="feedback__message__wrong"
+                    src={wrong}
+                    alt="wrong"
+                />
             )}
         </div>
     );

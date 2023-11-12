@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
-import { handleCardClick } from "@/Helpers/clickedCards";
 import { shuffleArray } from "@/Helpers/shuffleArray";
 import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCount";
 import { alphabet } from "./lettersGameData";
@@ -86,9 +85,9 @@ const LettersGame = () => {
                 cards={selectedLetters}
                 currentWordIndex={currentLetterIndex}
                 colors={Array.from({ length: 9 }, () => getRandomLightColor())}
-                style={"colors-game"}
+                style={"cards-with-text"}
             />
-            <FeedbackMessageComponent isCorrect={isCorrect} />#
+            <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}

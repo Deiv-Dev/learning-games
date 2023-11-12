@@ -91,7 +91,7 @@ const NumbersGame = () => {
                 cards={selectedNumbers}
                 currentWordIndex={currentWordIndex}
                 colors={Array.from({ length: 9 }, () => getRandomLightColor())}
-                style={"numbers-game"}
+                style={"cards-with-text"}
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (

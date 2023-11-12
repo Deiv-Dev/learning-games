@@ -16,7 +16,7 @@
     }
 }
 
-.feedback-message {
+.feedback__message {
     z-index: 1;
     position: absolute;
     top: 50%;
@@ -24,7 +24,7 @@
     transform: translate(-50%, -50%);
     animation: shake 0.5s ease-in-out infinite;
 
-    .wrong-svg {
+    &__wrong {
         width: 300px;
     }
 }

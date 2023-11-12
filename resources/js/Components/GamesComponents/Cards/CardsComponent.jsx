@@ -12,7 +12,7 @@ const CardsComponent = ({
     const cardClassName =
         style === "cards-with-text"
             ? "cards__component__card"
-            : "cards__component__card cards__component__card--colors";
+            : "cards__component__card cards__component__card--text";
     return (
         <div className="cards__component">
             <div className="cards__component__header">
@@ -22,12 +22,13 @@ const CardsComponent = ({
             </div>
             {cards.map((card, index) => (
                 <div
-                    key={index}
+                    key={card}
                     className={cardClassName}
                     style={{ backgroundColor: colors[index] }}
                     onClick={() => handleCardClick(card)}
+                    onKeyDown={(e) => handleKeyDown(e, card)}
                 >
-                    <p className="cards__component__card__text">{card}</p>
+                    <p className={style}>{card}</p>
                 </div>
             ))}
         </div>

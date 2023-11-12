@@ -76,7 +76,7 @@ const ColorsGame = () => {
                 cards={shuffledColors}
                 currentWordIndex={currentWordIndex}
                 colors={shuffledColors}
-                style={"colors-game"}
+                style={"cards-without-text"}
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
