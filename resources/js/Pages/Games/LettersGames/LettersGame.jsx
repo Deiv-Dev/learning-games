@@ -8,6 +8,8 @@ import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
 import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
 import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArrayHelper";
 import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
+import { resetScoreCount } from "@/Helpers/scoreCountHelper";
+import { cardsPlayAgainHelper } from "@/Helpers/cardPlayAgainHelper";
 
 const LettersGame = () => {
     const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
@@ -43,19 +45,15 @@ const LettersGame = () => {
         });
     };
 
-    const handlePlayAgain = () => {
-        setCurrentWordIndex(0);
-        setGameOver(false);
-        resetScoreCount();
-        setSelectedNumbers(
-            shuffleArray(
-                generatingArrayWithRandomValuesAndCorrectValues(
-                    numbersOnCards,
-                    currentWordIndex
-                )
-            )
+    const handlePlayAgain = (event) => {
+        event.preventDefault();
+        cardsPlayAgainHelper(
+            setCurrentLetterIndex,
+            setGameOver,
+            setSelectedLetters,
+            alphabet,
+            currentLetterIndex
         );
-        startTimer();
     };
 
     return (

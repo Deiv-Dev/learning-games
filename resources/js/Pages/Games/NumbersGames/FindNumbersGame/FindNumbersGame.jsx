@@ -6,10 +6,10 @@ import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessa
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 import { startTimer, endTimer } from "../../../../Helpers/countTimeHelper";
-import { resetScoreCount } from "@/Helpers/scoreCountHelper";
 import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
 import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArrayHelper";
 import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
+import { cardsPlayAgainHelper } from "@/Helpers/cardPlayAgainHelper";
 
 const NumbersGame = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -45,19 +45,15 @@ const NumbersGame = () => {
         });
     };
 
-    const handlePlayAgain = () => {
-        setCurrentWordIndex(0);
-        setGameOver(false);
-        resetScoreCount();
-        setSelectedNumbers(
-            shuffleArray(
-                generatingArrayWithRandomValuesAndCorrectValues(
-                    numbersOnCards,
-                    currentWordIndex
-                )
-            )
+    const handlePlayAgain = (event) => {
+        event.preventDefault();
+        cardsPlayAgainHelper(
+            setCurrentWordIndex,
+            setGameOver,
+            setSelectedNumbers,
+            numbersOnCards,
+            currentWordIndex
         );
-        startTimer();
     };
 
     return (

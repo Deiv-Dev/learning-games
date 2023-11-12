@@ -20,8 +20,8 @@ export function shuffleTwoArraysParallel(arrayOne, arrayTwo) {
 
     const shuffledPairs = shuffleArray(colorWordPairs);
 
-    const slicedColors = shuffledPairs.map((pair) => pair.firstArray);
-    const slicedWords = shuffledPairs.map((pair) => pair.secondArray);
+    const firstArray = shuffledPairs.map((pair) => pair.firstArray);
+    const secondArray = shuffledPairs.map((pair) => pair.secondArray);
 
-    return { slicedColors, slicedWords };
+    return { firstArray, secondArray };
 }

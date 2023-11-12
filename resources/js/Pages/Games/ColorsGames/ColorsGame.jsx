@@ -5,8 +5,8 @@ import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessa
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 import { startTimer, endTimer } from "../../../Helpers/countTimeHelper";
-import { resetScoreCount } from "@/Helpers/scoreCountHelper";
 import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
+import { cardsPlayAgainHelper } from "@/Helpers/cardPlayAgainHelper";
 
 const ColorsGame = () => {
     const [currentColorIndex, setCurrentColorIndex] = useState(0);
@@ -19,16 +19,19 @@ const ColorsGame = () => {
     const [shuffledColorsInWords, setShuffledColorsInWords] = useState([]);
 
     useEffect(() => {
-        const { slicedColors, slicedWords } = shuffleTwoArraysParallel(
+        const { firstArray, secondArray } = shuffleTwoArraysParallel(
             colorsOnCards,
             colorsInWords
         );
-        setShuffledColors(slicedColors.slice(0, 9));
-        setColorsToCompareWithWords(slicedColors.slice(0, 9));
-        setShuffledColorsInWords(slicedWords.slice(0, 9));
-
+        sliceArrays(firstArray, secondArray);
         startTimer();
     }, []);
+
+    const sliceArrays = (firstArray, secondArray) => {
+        setShuffledColors(firstArray.slice(0, 9));
+        setColorsToCompareWithWords(firstArray.slice(0, 9));
+        setShuffledColorsInWords(secondArray.slice(0, 9));
+    };
 
     const handleCardClick = (clickedCard) => {
         handleCardClickHelper({
@@ -43,11 +46,20 @@ const ColorsGame = () => {
         });
     };
 
-    const handlePlayAgain = () => {
-        setCurrentColorIndex(0);
-        setGameOver(false);
-        resetScoreCount();
-        startTimer();
+    const handlePlayAgain = (event) => {
+        event.preventDefault();
+        const { firstArray, secondArray } = shuffleTwoArraysParallel(
+            colorsOnCards,
+            colorsInWords
+        );
+        sliceArrays(firstArray, secondArray);
+        cardsPlayAgainHelper(
+            setCurrentColorIndex,
+            setGameOver,
+            setShuffledColors,
+            shuffledColors,
+            currentColorIndex
+        );
     };
 
     return (

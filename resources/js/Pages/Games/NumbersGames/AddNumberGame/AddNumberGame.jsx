@@ -3,11 +3,7 @@ import "./AddNumbersGame.scss";
 import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
-import {
-    countCorrectPress,
-    countWrongPress,
-    resetScoreCount,
-} from "@/Helpers/scoreCountHelper";
+import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCountHelper";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 
 const AddNumbersGames = () => {
@@ -60,14 +56,6 @@ const AddNumbersGames = () => {
         }
     };
 
-    const handlePlayAgain = () => {
-        setRotationTillGameEnds(0);
-        resetScoreCount();
-        setRandomNumbersToAdd(generateRandomNumbers());
-        startTimer();
-        setGameOver(false);
-    };
-
     return (
         <>
             {" "}
@@ -100,7 +88,6 @@ const AddNumbersGames = () => {
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
                 <GameOverComponent
-                    handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
                     gameName={"add-numbers-game"}
                 />

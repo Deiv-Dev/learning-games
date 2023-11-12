@@ -18,7 +18,7 @@ export const handleCardClickHelper = (clickedCard) => {
             if (nextIndex === 0) {
                 clickedCard.setGameOver(true);
             }
-            clickedCard.setCorrectAns(nextIndex);
+            clickedCard.setCorrectAnswersIndex(nextIndex);
             clickedCard.setValuesToDisplayOnCards(
                 shuffleArray(
                     generatingArrayWithRandomValuesAndCorrectValues(
