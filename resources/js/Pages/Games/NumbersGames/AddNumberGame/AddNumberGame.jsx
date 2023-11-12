@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./AddNumbersGame.scss";
-import { getRandomLightColor } from "@/Helpers/generateLightRandomColors";
+import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
-import { startTimer, endTimer } from "@/Helpers/countTime";
+import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
 import {
     countCorrectPress,
     countWrongPress,
     resetScoreCount,
-} from "@/Helpers/scoreCount";
+} from "@/Helpers/scoreCountHelper";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 
 const AddNumbersGames = () => {

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import "./GameOverComponent.scss";
-import { score } from "@/Helpers/scoreCount";
-import { formatElapsedTime } from "@/Helpers/countTime";
-import { submitGameScore } from "@/Helpers/submitGameScore ";
+import { score } from "@/Helpers/scoreCountHelper";
+import { formatElapsedTime } from "@/Helpers/countTimeHelper";
+import { submitGameScore } from "@/Helpers/submitGameScoreHelper";
 
 const GameOverComponent = ({ handlePlayAgain, endTimer, gameName }) => {
     useEffect(() => {
@@ -28,7 +28,10 @@ const GameOverComponent = ({ handlePlayAgain, endTimer, gameName }) => {
                     <p className="game__over__counters__text">
                         Trukmė: {formatElapsedTime(endTimer())}
                     </p>
-                    <Link href={route("games-scores", { name: gameName })}>
+                    <Link
+                        className="game__over__play__again game__over__counters__text"
+                        href={route("games-scores", { name: gameName })}
+                    >
                         <button>Tasku ziuer</button>
                     </Link>
                 </div>

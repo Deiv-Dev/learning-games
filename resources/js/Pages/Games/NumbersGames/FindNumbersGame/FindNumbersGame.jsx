@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./FindNumbersGame.scss";
-import { shuffleArray } from "../../../../Helpers/shuffleArray";
+import { shuffleArray } from "../../../../Helpers/shuffleArrayHelper";
 import { numbersOnCards, numbersInWords } from "./FindNumbersGameData";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
-import { startTimer, endTimer } from "../../../../Helpers/countTime";
-import {
-    countCorrectPress,
-    countWrongPress,
-    resetScoreCount,
-} from "@/Helpers/scoreCount";
-import { getRandomLightColor } from "@/Helpers/generateLightRandomColors";
-import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArray";
+import { startTimer, endTimer } from "../../../../Helpers/countTimeHelper";
+import { resetScoreCount } from "@/Helpers/scoreCountHelper";
+import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
+import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArrayHelper";
+import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
 
 const NumbersGame = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -36,36 +33,16 @@ const NumbersGame = () => {
     }, [currentWordIndex]);
 
     const handleCardClick = (clickedCard) => {
-        if (gameOver) return;
-
-        const correctNumber = numbersOnCards[currentWordIndex];
-        if (clickedCard === correctNumber) {
-            setIsCorrect(true);
-            countCorrectPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-                const nextIndex =
-                    (currentWordIndex + 1) % numbersInWords.length;
-                if (nextIndex === 0) {
-                    setGameOver(true);
-                }
-                setCurrentWordIndex(nextIndex);
-                setSelectedNumbers(
-                    shuffleArray(
-                        generatingArrayWithRandomValuesAndCorrectValues(
-                            numbersOnCards,
-                            currentWordIndex
-                        )
-                    )
-                );
-            }, 500);
-        } else {
-            setIsCorrect(false);
-            countWrongPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-            }, 500);
-        }
+        handleCardClickHelper({
+            clickedCard,
+            valuesOnCards: numbersOnCards,
+            currentValueIndex: currentWordIndex,
+            gameOver,
+            setIsCorrect,
+            setGameOver,
+            setCorrectAnswersIndex: setCurrentWordIndex,
+            setValuesToDisplayOnCards: setSelectedNumbers,
+        });
     };
 
     const handlePlayAgain = () => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import LinearChart from "@/Components/GamesComponents/LinearChart";
-import { convertToMinutesSeconds } from "@/Helpers/countTime";
+import { convertToMinutesSeconds } from "@/Helpers/countTimeHelper";
 
 const ScoreDashboard = ({ name }) => {
     const [score, setScore] = useState([]);

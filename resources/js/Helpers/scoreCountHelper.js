@@ -1,6 +1,5 @@
 let wrongCount = 0;
 let correctCount = 0;
-let calculatedScore = 0;
 
 export const countWrongPress = () => {
     wrongCount += 1;

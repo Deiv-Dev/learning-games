@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from "react";
-import {
-    shuffleArray,
-    shuffleTwoArraysParallel,
-} from "../../../Helpers/shuffleArray";
+import { shuffleTwoArraysParallel } from "../../../Helpers/shuffleArrayHelper";
 import { colorsOnCards, colorsInWords } from "./ColorsGameData";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
-import { startTimer, endTimer } from "../../../Helpers/countTime";
-import {
-    countCorrectPress,
-    countWrongPress,
-    resetScoreCount,
-} from "@/Helpers/scoreCount";
+import { startTimer, endTimer } from "../../../Helpers/countTimeHelper";
+import { resetScoreCount } from "@/Helpers/scoreCountHelper";
+import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
 
 const ColorsGame = () => {
-    const [currentWordIndex, setCurrentWordIndex] = useState(0);
+    const [currentColorIndex, setCurrentColorIndex] = useState(0);
     const [isCorrect, setIsCorrect] = useState(null);
     const [gameOver, setGameOver] = useState(false);
     const [shuffledColors, setShuffledColors] = useState([]);
@@ -37,32 +31,20 @@ const ColorsGame = () => {
     }, []);
 
     const handleCardClick = (clickedCard) => {
-        if (gameOver) return;
-
-        const currentColor = colorsToCompareWithWords[currentWordIndex];
-        if (clickedCard === currentColor) {
-            setShuffledColors(shuffleArray(shuffledColors));
-            setIsCorrect(true);
-            countCorrectPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-                const nextIndex = (currentWordIndex + 1) % 9;
-                if (nextIndex === 0) {
-                    setGameOver(true);
-                }
-                setCurrentWordIndex(nextIndex);
-            }, 500);
-        } else {
-            setIsCorrect(false);
-            countWrongPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-            }, 500);
-        }
+        handleCardClickHelper({
+            clickedCard,
+            valuesOnCards: colorsToCompareWithWords,
+            currentValueIndex: currentColorIndex,
+            gameOver,
+            setIsCorrect,
+            setGameOver,
+            setCorrectAnswersIndex: setCurrentColorIndex,
+            setValuesToDisplayOnCards: setShuffledColors,
+        });
     };
 
     const handlePlayAgain = () => {
-        setCurrentWordIndex(0);
+        setCurrentColorIndex(0);
         setGameOver(false);
         resetScoreCount();
         startTimer();
@@ -74,7 +56,7 @@ const ColorsGame = () => {
                 handleCardClick={handleCardClick}
                 wordsToFind={shuffledColorsInWords}
                 cards={shuffledColors}
-                currentWordIndex={currentWordIndex}
+                currentWordIndex={currentColorIndex}
                 colors={shuffledColors}
                 style={"cards-without-text"}
             />

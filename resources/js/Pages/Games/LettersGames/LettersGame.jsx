@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
-import { shuffleArray } from "@/Helpers/shuffleArray";
-import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCount";
+import { shuffleArray } from "@/Helpers/shuffleArrayHelper";
 import { alphabet } from "./lettersGameData";
-import { getRandomLightColor } from "@/Helpers/generateLightRandomColors";
-import { startTimer, endTimer } from "@/Helpers/countTime";
-import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArray";
+import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
+import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
+import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArrayHelper";
+import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
 
 const LettersGame = () => {
     const [currentLetterIndex, setCurrentLetterIndex] = useState(0);
@@ -31,35 +31,16 @@ const LettersGame = () => {
     }, [currentLetterIndex]);
 
     const handleCardClick = (clickedCard) => {
-        if (gameOver) return;
-
-        const correctLetter = alphabet[currentLetterIndex];
-        if (clickedCard === correctLetter) {
-            setIsCorrect(true);
-            countCorrectPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-                const nextIndex = (currentLetterIndex + 1) % alphabet.length;
-                if (nextIndex === 0) {
-                    setGameOver(true);
-                }
-                setCurrentLetterIndex(nextIndex);
-                setSelectedLetters(
-                    shuffleArray(
-                        generatingArrayWithRandomValuesAndCorrectValues(
-                            alphabet,
-                            currentLetterIndex
-                        )
-                    )
-                );
-            }, 500);
-        } else {
-            setIsCorrect(false);
-            countWrongPress();
-            setTimeout(() => {
-                setIsCorrect(null);
-            }, 500);
-        }
+        handleCardClickHelper({
+            clickedCard,
+            valuesOnCards: alphabet,
+            currentValueIndex: currentLetterIndex,
+            gameOver,
+            setIsCorrect,
+            setGameOver,
+            setCorrectAnswersIndex: setCurrentLetterIndex,
+            setValuesToDisplayOnCards: setSelectedLetters,
+        });
     };
 
     const handlePlayAgain = () => {
