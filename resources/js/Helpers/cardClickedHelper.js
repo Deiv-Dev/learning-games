@@ -7,17 +7,19 @@ export const handleCardClickHelper = (clickedCard) => {
 
     const correctCardToClick =
         clickedCard.valuesOnCards[clickedCard.currentValueIndex];
-    if (clickedCard.clickedCard === correctCardToClick) {
-        clickedCard.setIsCorrect(true);
-        countCorrectPress();
-        setTimeout(() => {
-            clickedCard.setIsCorrect(null);
+    const isCorrect = clickedCard.clickedCard === correctCardToClick;
+
+    clickedCard.setIsCorrect(isCorrect);
+    isCorrect ? countCorrectPress() : countWrongPress();
+
+    setTimeout(() => {
+        clickedCard.setIsCorrect(null);
+
+        if (isCorrect) {
             const nextIndex =
                 (clickedCard.currentValueIndex + 1) %
                 clickedCard.valuesOnCards.length;
-            if (nextIndex === 0) {
-                clickedCard.setGameOver(true);
-            }
+            clickedCard.setGameOver(nextIndex === 0);
             clickedCard.setCorrectAnswersIndex(nextIndex);
             clickedCard.setValuesToDisplayOnCards(
                 shuffleArray(
@@ -27,12 +29,6 @@ export const handleCardClickHelper = (clickedCard) => {
                     )
                 )
             );
-        }, 500);
-    } else {
-        clickedCard.setIsCorrect(false);
-        countWrongPress();
-        setTimeout(() => {
-            clickedCard.setIsCorrect(null);
-        }, 500);
-    }
+        }
+    }, 500);
 };

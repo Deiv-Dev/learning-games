@@ -70,14 +70,14 @@ const ColorsGame = () => {
                 cards={shuffledColors}
                 currentWordIndex={currentColorIndex}
                 colors={shuffledColors}
-                style={"cards-without-text"}
+                style="cards-without-text"
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
-                    gameName={"colors-game"}
+                    gameName="colors-game"
                 />
             )}
         </>

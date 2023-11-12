@@ -64,14 +64,14 @@ const LettersGame = () => {
                 cards={selectedLetters}
                 currentWordIndex={currentLetterIndex}
                 colors={Array.from({ length: 9 }, () => getRandomLightColor())}
-                style={"cards-with-text"}
+                style="cards-with-text"
             />
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (
                 <GameOverComponent
                     handlePlayAgain={handlePlayAgain}
                     endTimer={endTimer}
-                    gameName={"letters-game"}
+                    gameName="letters-game"
                 />
             )}
         </>

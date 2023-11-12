@@ -89,7 +89,7 @@ const AddNumbersGames = () => {
             {gameOver && (
                 <GameOverComponent
                     endTimer={endTimer}
-                    gameName={"add-numbers-game"}
+                    gameName="add-numbers-game"
                 />
             )}
         </>
