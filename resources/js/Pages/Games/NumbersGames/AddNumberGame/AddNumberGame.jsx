@@ -5,6 +5,7 @@ import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessa
 import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
 import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCountHelper";
 import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
+import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
 
 const AddNumbersGames = () => {
     const [answer, setAnswer] = useState(0);
@@ -56,6 +57,11 @@ const AddNumbersGames = () => {
         }
     };
 
+    const handleCardClick = (clickedCard) => {
+        setAnswer((prevAnswer) => prevAnswer * 10 + parseInt(clickedCard, 10));
+        console.log(typeof answer); // Outputs: "number"
+    };
+
     return (
         <>
             {" "}
@@ -65,10 +71,11 @@ const AddNumbersGames = () => {
                     style={{ backgroundColor: randomBackgroundColors }}
                 >
                     <p className="card-text">
-                        {randomNumbersToAdd[0]} + {randomNumbersToAdd[1]} =
+                        {randomNumbersToAdd[0]} + {randomNumbersToAdd[1]} ={" "}
+                        {answer}
                     </p>
                 </div>
-                <div
+                {/* <div
                     className="add-numbers-game"
                     style={{ backgroundColor: randomBackgroundColors }}
                 >
@@ -80,10 +87,20 @@ const AddNumbersGames = () => {
                             required
                         />
                     </form>
-                </div>
-                <button type="submit" onClick={onSubmit}>
+                </div> */}
+                {/* <button type="submit" onClick={onSubmit}>
                     Tikrinti atsakyma
-                </button>
+                </button> */}
+                <CardsComponent
+                    handleCardClick={handleCardClick}
+                    wordsToFind={0}
+                    cards={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]}
+                    currentWordIndex={0}
+                    colors={Array.from({ length: 9 }, () =>
+                        getRandomLightColor()
+                    )}
+                    style="cards-with-text"
+                />
             </div>
             <FeedbackMessageComponent isCorrect={isCorrect} />
             {gameOver && (

@@ -1,8 +1,8 @@
 .add-numbers-grid-container {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: 2fr 1fr;
-    grid-gap: 5px;
+    // grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr;
     max-width: 100%;
     min-height: 100vh;
     justify-content: center;
@@ -17,7 +17,7 @@
         justify-content: center;
         align-items: center;
         text-align: center;
-        height: 50vh;
+
         font-size: 6rem;
     }
 
@@ -46,6 +46,10 @@
             color: white;
         }
     }
+}
+
+.cards__component__card {
+    height: 5rem !important;
 }
 
 @media (max-width: 1100px) {
