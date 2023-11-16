@@ -1,4 +1,8 @@
-export const submitGameScore = async (gameName, endTimer, score) => {
+export const submitGameScore = async (
+    gameName: string,
+    endTimer: () => number,
+    score: number
+): Promise<void> => {
     const formData = {
         game_name: gameName,
         score: score,

@@ -2,7 +2,18 @@ import { countCorrectPress, countWrongPress } from "./scoreCountHelper";
 import { shuffleArray } from "./shuffleArrayHelper";
 import { generatingArrayWithRandomValuesAndCorrectValues } from "./generatingArrayHelper";
 
-export const handleCardClickHelper = (clickedCard) => {
+interface Card {
+    gameOver: boolean;
+    valuesOnCards: Array<number | string>;
+    currentValueIndex: number;
+    clickedCard: number | string;
+    setIsCorrect: (isCorrect: boolean | null) => void;
+    setGameOver: (gameOver: boolean) => void;
+    setCorrectAnswersIndex: (index: number) => void;
+    setValuesToDisplayOnCards: (values: Array<string | number>) => void;
+}
+
+export const handleCardClickHelper = (clickedCard: Card): void => {
     if (clickedCard.gameOver) return;
 
     const correctCardToClick =

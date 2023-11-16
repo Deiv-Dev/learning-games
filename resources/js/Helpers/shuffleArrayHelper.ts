@@ -1,4 +1,4 @@
-export function shuffleArray(array) {
+export function shuffleArray<T>(array: T[]): T[] {
     const shuffledArray = [...array];
 
     for (let i = shuffledArray.length - 1; i > 0; i--) {
@@ -11,10 +11,12 @@ export function shuffleArray(array) {
 
     return shuffledArray;
 }
-
-export function shuffleTwoArraysParallel(arrayOne, arrayTwo) {
-    const colorWordPairs = arrayOne.map((array, index) => ({
-        firstArray: array,
+export function shuffleTwoArraysParallel(
+    arrayOne: Array<string | number>,
+    arrayTwo: Array<string | number>
+): { firstArray: Array<string | number>; secondArray: Array<string | number> } {
+    const colorWordPairs = arrayOne.map((value, index) => ({
+        firstArray: value,
         secondArray: arrayTwo[index],
     }));
 
