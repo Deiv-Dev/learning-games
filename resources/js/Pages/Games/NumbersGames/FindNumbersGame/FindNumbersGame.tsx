@@ -2,19 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./FindNumbersGame.scss";
 import { shuffleArray } from "../../../../Helpers/shuffleArrayHelper";
 import { numbersOnCards, numbersInWords } from "./FindNumbersGameData";
-import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
-import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
-import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
+import FeedbackMessageComponent from "../../../../Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
+import GameOverComponent from "../../../../Components/GamesComponents/GameOver/GameOverComponent";
+import CardsComponent from "../../../../Components/GamesComponents/Cards/CardsComponent";
 import { startTimer, endTimer } from "../../../../Helpers/countTimeHelper";
-import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
-import { generatingArrayWithRandomValuesAndCorrectValues } from "@/Helpers/generatingArrayHelper";
-import { handleCardClickHelper } from "@/Helpers/cardClickedHelper";
-import { cardsPlayAgainHelper } from "@/Helpers/cardPlayAgainHelper";
+import { getRandomLightColor } from "../../../../Helpers/generateLightRandomColorsHelper";
+import { generatingArrayWithRandomValuesAndCorrectValues } from "../../../../Helpers/generatingArrayHelper";
+import { handleCardClickHelper } from "../../../../Helpers/cardClickedHelper";
+import { cardsPlayAgainHelper } from "../../../../Helpers/cardPlayAgainHelper";
 
-const NumbersGame = () => {
+const NumbersGame: React.FC = () => {
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
-    const [selectedNumbers, setSelectedNumbers] = useState([]);
-    const [isCorrect, setIsCorrect] = useState(null);
+    const [selectedNumbers, setSelectedNumbers] = useState<(number | string)[]>(
+        []
+    );
+    const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
     const [gameOver, setGameOver] = useState(false);
 
     useEffect(() => {
@@ -32,7 +34,7 @@ const NumbersGame = () => {
         );
     }, [currentWordIndex]);
 
-    const handleCardClick = (clickedCard) => {
+    const handleCardClick = (clickedCard: number) => {
         handleCardClickHelper({
             clickedCard,
             valuesOnCards: numbersOnCards,
@@ -45,7 +47,7 @@ const NumbersGame = () => {
         });
     };
 
-    const handlePlayAgain = (event) => {
+    const handlePlayAgain = (event: React.MouseEvent) => {
         event.preventDefault();
         cardsPlayAgainHelper(
             setCurrentWordIndex,

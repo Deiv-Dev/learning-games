@@ -3,7 +3,13 @@ import "./FeedbackMessageComponent.scss";
 import wrong from "../../../Images/wrong.svg";
 import correct from "../../../Images/correct.png";
 
-const FeedbackMessageComponent = ({ isCorrect }) => {
+interface FeedbackMessageProps {
+    isCorrect: boolean | null;
+}
+
+const FeedbackMessageComponent: React.FC<FeedbackMessageProps> = ({
+    isCorrect,
+}) => {
     return (
         <div className="feedback__message">
             {isCorrect === true && <img src={correct} alt="correct" />}

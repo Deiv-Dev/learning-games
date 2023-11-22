@@ -20,7 +20,18 @@ Chart.register(
     PointElement,
     LineElement
 );
-const LinearChart = ({ score, time, createdAt }) => {
+
+interface LinearChartProps {
+    score: number[];
+    time: number[];
+    createdAt: string[];
+}
+
+const LinearChart: React.FC<LinearChartProps> = ({
+    score,
+    time,
+    createdAt,
+}) => {
     const data = {
         labels: createdAt,
         datasets: [

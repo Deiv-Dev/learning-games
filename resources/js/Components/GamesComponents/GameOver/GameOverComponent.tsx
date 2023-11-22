@@ -1,11 +1,22 @@
 import React, { useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import "./GameOverComponent.scss";
-import { score } from "@/Helpers/scoreCountHelper";
-import { formatElapsedTime } from "@/Helpers/countTimeHelper";
-import { submitGameScore } from "@/Helpers/submitGameScoreHelper";
+import { score } from "../../../Helpers/scoreCountHelper";
+import { formatElapsedTime } from "../../../Helpers/countTimeHelper";
+import { submitGameScore } from "../../../Helpers/submitGameScoreHelper";
+import route from "ziggy-js";
 
-const GameOverComponent = ({ handlePlayAgain, endTimer, gameName }) => {
+interface GameOverComponentProps {
+    handlePlayAgain: () => void;
+    endTimer: () => number;
+    gameName: string;
+}
+
+const GameOverComponent: React.FC<GameOverComponentProps> = ({
+    handlePlayAgain,
+    endTimer,
+    gameName,
+}) => {
     useEffect(() => {
         submitGameScore(gameName, endTimer, score());
     }, []);

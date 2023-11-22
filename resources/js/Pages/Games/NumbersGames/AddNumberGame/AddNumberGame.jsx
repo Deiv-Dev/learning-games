@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./AddNumbersGame.scss";
-import { getRandomLightColor } from "@/Helpers/generateLightRandomColorsHelper";
-import FeedbackMessageComponent from "@/Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
-import { startTimer, endTimer } from "@/Helpers/countTimeHelper";
-import { countCorrectPress, countWrongPress } from "@/Helpers/scoreCountHelper";
-import GameOverComponent from "@/Components/GamesComponents/GameOver/GameOverComponent";
-import CardsComponent from "@/Components/GamesComponents/Cards/CardsComponent";
+import { getRandomLightColor } from "../../../../Helpers/generateLightRandomColorsHelper";
+import FeedbackMessageComponent from "../../../../Components/GamesComponents/FeedbackMessage/FeedbackMessageComponent";
+import { startTimer, endTimer } from "../../../../Helpers/countTimeHelper";
+import {
+    countCorrectPress,
+    countWrongPress,
+} from "../../../../Helpers/scoreCountHelper";
+import GameOverComponent from "../../../../Components/GamesComponents/GameOver/GameOverComponent";
+import CardsComponent from "../../../../Components/GamesComponents/Cards/CardsComponent";
 
 const AddNumbersGames = () => {
     const [answer, setAnswer] = useState(0);

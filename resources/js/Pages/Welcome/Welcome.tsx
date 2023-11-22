@@ -1,8 +1,21 @@
 import React from "react";
-import { Link, Head } from "@inertiajs/react";
+import { Link, Head, usePage } from "@inertiajs/react";
 import "./Welcome.scss";
+import route from "ziggy-js";
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+interface WelcomeProps {
+    auth: {
+        user: any; // Adjust the type according to your authentication user type
+    };
+    laravelVersion: string;
+    phpVersion: string;
+}
+
+const Welcome: React.FC<WelcomeProps> = ({
+    auth,
+    laravelVersion,
+    phpVersion,
+}) => {
     return (
         <>
             <Head title="Welcome" />
@@ -63,4 +76,6 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
             </div>
         </>
     );
-}
+};
+
+export default Welcome;

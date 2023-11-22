@@ -1,7 +1,16 @@
 import React from "react";
 import "./Cards.Component.scss";
 
-const CardsComponent = ({
+interface CardsComponentProps {
+    handleCardClick: (card: string) => void;
+    wordsToFind: string[];
+    cards: string[];
+    currentWordIndex: number;
+    colors: string[];
+    style: "cards-with-text" | "cards-without-text";
+}
+
+const CardsComponent: React.FC<CardsComponentProps> = ({
     handleCardClick,
     wordsToFind,
     cards,
@@ -13,6 +22,7 @@ const CardsComponent = ({
         style === "cards-with-text"
             ? "cards__component__card"
             : "cards__component__card cards__component__card--text";
+
     return (
         <div className="cards__component">
             <div className="cards__component__header">
@@ -26,7 +36,6 @@ const CardsComponent = ({
                     className={cardClassName}
                     style={{ backgroundColor: colors[index] }}
                     onClick={() => handleCardClick(card)}
-                    onKeyDown={(e) => handleKeyDown(e, card)}
                 >
                     <p className={style}>{card}</p>
                 </div>

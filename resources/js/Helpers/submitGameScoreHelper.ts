@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const submitGameScore = async (
     gameName: string,
     endTimer: () => number,
@@ -10,19 +12,13 @@ export const submitGameScore = async (
     };
 
     try {
-        const response = await fetch("/api/game_scores", {
-            method: "POST",
+        await axios.post("/api/game_scores", formData, {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
         });
 
-        if (response.ok) {
-            console.log("Game score added successfully");
-        } else {
-            console.error("Server responded with an error:", response.status);
-        }
+        console.log("Game score added successfully");
     } catch (error) {
         console.error("Error adding game score:", error);
     }
