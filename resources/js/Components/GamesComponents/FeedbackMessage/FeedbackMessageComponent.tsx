@@ -1,7 +1,7 @@
 import React from "react";
 import "./FeedbackMessageComponent.scss";
 import wrong from "../../../Images/wrong.svg";
-import correct from "../../../Images/correct.png";
+import correct from "../../../Images/correct.svg";
 
 interface FeedbackMessageProps {
     isCorrect: boolean | null;

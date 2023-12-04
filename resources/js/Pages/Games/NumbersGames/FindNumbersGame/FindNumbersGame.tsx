@@ -34,7 +34,7 @@ const NumbersGame: React.FC = () => {
         );
     }, [currentWordIndex]);
 
-    const handleCardClick = (clickedCard: number) => {
+    const handleCardClick = (clickedCard: string | number) => {
         handleCardClickHelper({
             clickedCard,
             valuesOnCards: numbersOnCards,

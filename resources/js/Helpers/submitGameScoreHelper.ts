@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const submitGameScore = async (
     gameName: string,
-    endTimer: () => number,
+    endTimer: () => string | number,
     score: number
 ): Promise<void> => {
     const formData = {

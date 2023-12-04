@@ -40,7 +40,7 @@ const ColorsGame: React.FC = () => {
         setShuffledColorsInWords(secondArray.slice(0, 9));
     };
 
-    const handleCardClick = (clickedCard: string) => {
+    const handleCardClick = (clickedCard: number | string) => {
         handleCardClickHelper({
             clickedCard,
             valuesOnCards: colorsToCompareWithWords,

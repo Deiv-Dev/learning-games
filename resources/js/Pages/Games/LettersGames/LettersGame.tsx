@@ -33,7 +33,7 @@ const LettersGame: React.FC = () => {
         );
     }, [currentLetterIndex]);
 
-    const handleCardClick = (clickedCard: string) => {
+    const handleCardClick = (clickedCard: number | string) => {
         handleCardClickHelper({
             clickedCard,
             valuesOnCards: alphabet,
@@ -46,7 +46,7 @@ const LettersGame: React.FC = () => {
         });
     };
 
-    const handlePlayAgain = (event: React.MouseEvent) => {
+    const handlePlayAgain = (event: React.MouseEvent): void => {
         event.preventDefault();
         cardsPlayAgainHelper(
             setCurrentLetterIndex,

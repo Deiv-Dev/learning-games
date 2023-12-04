@@ -2,9 +2,9 @@ import React from "react";
 import "./Cards.Component.scss";
 
 interface CardsComponentProps {
-    handleCardClick: (card: string) => void;
-    wordsToFind: string[];
-    cards: string[];
+    handleCardClick: (card: number | string) => void;
+    wordsToFind: (number | string)[];
+    cards: (number | string)[];
     currentWordIndex: number;
     colors: string[];
     style: "cards-with-text" | "cards-without-text";

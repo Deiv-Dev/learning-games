@@ -1,7 +1,6 @@
 .add-numbers-grid-container {
     display: grid;
     grid-template-rows: auto;
-    // grid-template-columns: 2fr 1fr;
     grid-template-columns: 3fr;
     max-width: 100%;
     min-height: 100vh;
@@ -48,8 +47,27 @@
     }
 }
 
+.cards__component__title {
+    display: none;
+}
+
+.cards__component {
+    min-height: 0vh !important;
+}
+
 .cards__component__card {
     height: 5rem !important;
+}
+
+.png {
+    height: 100px;
+}
+
+@media (max-width: 950px) {
+    .cards-with-text,
+    .card-text {
+        font-size: 4rem;
+    }
 }
 
 @media (max-width: 1100px) {

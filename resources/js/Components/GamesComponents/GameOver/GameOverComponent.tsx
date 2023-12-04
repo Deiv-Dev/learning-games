@@ -7,8 +7,8 @@ import { submitGameScore } from "../../../Helpers/submitGameScoreHelper";
 import route from "ziggy-js";
 
 interface GameOverComponentProps {
-    handlePlayAgain: () => void;
-    endTimer: () => number;
+    handlePlayAgain: (event: React.MouseEvent) => void;
+    endTimer: () => number | string;
     gameName: string;
 }
 

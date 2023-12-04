@@ -8,7 +8,10 @@ export const endTimer = (): number | string => {
     return startTime ? Date.now() - startTime : "Timer not started";
 };
 
-export const formatElapsedTime = (milliseconds: number): string => {
+export const formatElapsedTime = (milliseconds: number | string): string => {
+    if (typeof milliseconds === "string") {
+        return `bad time`;
+    }
     const minutes = Math.floor(milliseconds / (1000 * 60));
     const seconds = Math.floor((milliseconds / 1000) % 60);
     return `${minutes} min ${seconds} sec`;
