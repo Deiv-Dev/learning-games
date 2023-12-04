@@ -10,7 +10,7 @@
     margin: 0 20%;
     box-sizing: border-box;
 
-    .add-numbers-game {
+    &__counter {
         border-radius: 20px;
         display: flex;
         justify-content: center;
@@ -20,52 +20,26 @@
         font-size: 6rem;
     }
 
-    form input[type="number"] {
-        border-radius: 20px;
-        font-size: 6rem;
-        background-color: transparent;
-        width: 100%;
-        text-align: center;
+    .cards__component__title {
+        display: none;
     }
 
-    input::-webkit-outer-spin-button,
-    input::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
+    .cards__component {
+        min-height: 0vh !important;
 
-    button {
-        border-radius: 20px;
-        background-color: rgb(109, 109, 255);
-        font-size: 3rem;
-        grid-row: 3; /* Place the button in the third row */
-        grid-column: span 2;
-
-        &:hover {
-            color: white;
+        .cards__component__card {
+            height: 5rem !important;
         }
     }
-}
 
-.cards__component__title {
-    display: none;
-}
-
-.cards__component {
-    min-height: 0vh !important;
-}
-
-.cards__component__card {
-    height: 5rem !important;
-}
-
-.png {
-    height: 100px;
+    .cards__component__card__svg {
+        height: 100px;
+    }
 }
 
 @media (max-width: 950px) {
     .cards-with-text,
-    .card-text {
+    .add-numbers-game__card-text {
         font-size: 4rem;
     }
 }
