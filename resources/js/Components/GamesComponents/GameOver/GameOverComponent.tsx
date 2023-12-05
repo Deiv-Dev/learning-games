@@ -8,7 +8,7 @@ import route from "ziggy-js";
 
 interface GameOverComponentProps {
     handlePlayAgain: (event: React.MouseEvent) => void;
-    endTimer: () => number | string;
+    endTimer: () => number;
     gameName: string;
 }
 

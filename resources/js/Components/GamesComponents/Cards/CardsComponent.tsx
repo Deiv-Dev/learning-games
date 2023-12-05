@@ -10,14 +10,14 @@ interface CardsComponentProps {
     style: "cards-with-text" | "cards-without-text";
 }
 
-const CardsComponent: React.FC<CardsComponentProps> = ({
+const CardsComponent = ({
     handleCardClick,
     wordsToFind,
     cards,
     currentWordIndex,
     colors,
     style,
-}) => {
+}: CardsComponentProps) => {
     const cardClassName =
         style === "cards-with-text"
             ? "cards__component__card"

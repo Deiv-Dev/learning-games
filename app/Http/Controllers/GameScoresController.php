@@ -63,6 +63,9 @@ class GameScoresController extends Controller
 
             GameScore::create($data);
 
+            Cache::forget(self::CACHE_ALL_GAME_SCORES);
+            Cache::forget($data['game_name']);
+
             return response()->json([
                 'status' => 'success',
                 'message' => 'Game score added successfully'

@@ -17,6 +17,6 @@ export const formatElapsedTime = (milliseconds: number | string): string => {
     return `${minutes} min ${seconds} sec`;
 };
 
-export const convertToMinutesSeconds = (milliseconds: number): string => {
-    return ((Math.floor(milliseconds / 1000) % 3600) / 60).toFixed(2);
+export const convertToMinutesSeconds = (milliseconds: number): number => {
+    return (Math.floor(milliseconds / 1000) % 3600) / 60;
 };
